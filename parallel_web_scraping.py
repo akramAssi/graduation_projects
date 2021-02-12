@@ -70,16 +70,13 @@ def marge_list(featue_list):
         text+=","
     return text[:len(text)-1]
 
-def pp(results):
-    results=list(filter(None, results))
-    return results
+
 
 def give_html(url):
     global all_html
     res = requests.get(url)
     print(res.status_code, res.url,len(all_html))
     if res.url == base_url[:len(base_url)-1]:
-        print(type(res.url))
         return None
 
     return res
@@ -91,6 +88,7 @@ def save_csv(lable,data,name_file):
     df.to_csv(name_file)
 
 def scrape(html_text):
+    print("scrape ->" + html_text.url)
     soup =BeautifulSoup(html_text.text,'lxml')
     car_row={
         "car_name":None,
@@ -149,7 +147,8 @@ if __name__ == '__main__':
     with Pool(10) as p:
         results=p.map(give_html, all_urls)
 
-    results=pp(results)
+    # results=pp(results)
+    results=list(filter(None, results))
     
     with Pool(10) as p:
         data=p.map(scrape, results)

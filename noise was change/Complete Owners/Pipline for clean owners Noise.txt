@@ -1,0 +1,5 @@
+1. Remove the space 
+2. Create a csv file that have a unique class for all owners column 
+3. Create a group for each set of world that related to the same class
+4. export a list for all categories "Group"
+5. Write a Function that take a list and the data and search for all data if we found a data that belong to a set of group it will replace it with other World  
